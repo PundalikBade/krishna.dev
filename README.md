@@ -1,26 +1,61 @@
-# DevFolio — MERN Stack Portfolio
+# Krishna — MERN Stack Portfolio
 
-A modern developer portfolio with motion graphics, built on the **MongoDB · Express · React · Node.js** stack.
+A retro pixel-art portfolio built with **MongoDB · Express · React · Node.js** and **Tailwind CSS**, showcasing my learning journey as a first-year BS student at IIT Madras.
 
 ## Features
 
-- **Motion graphics** — Framer Motion scroll animations, animated hero text, particle background, custom cursor, 3D tilt cards, animated skill bars, floating logo, loader screen
-- **MERN backend** — Contact form saves messages to MongoDB via Express API
-- **Fully responsive** — mobile-first layout with animated hamburger menu
-- **Dark neon theme** — gradients, glassmorphism, glow effects
+- **Retro pixel-art identity** — Press Start 2P typography, thick borders, offset shadows, playful SVG illustrations
+- **Tailwind CSS v4** — consistent design system via `@theme` tokens, minimal custom CSS
+- **MERN backend** — Projects CRUD API + contact form saved to MongoDB
+- **Framer Motion** — subtle scroll reveals, navbar entrance, loader animation
+- **Honest content** — no fake experience, no invented projects; work-in-progress cards reflect real status
+- **Responsive** — mobile hamburger menu, fluid grids, adjusted typography
 
 ## Project Structure
 
 ```
-├── server/            # Express + MongoDB API
-│   ├── models/        # Mongoose models (Contact)
-│   ├── routes/        # API routes
-│   └── server.js      # Entry point
-├── client/            # React (Vite) frontend
+├── server/                     # Express + MongoDB API
+│   ├── config/db.js            # Mongoose connection
+│   ├── controllers/            # Business logic
+│   │   ├── projectController.js
+│   │   └── contactController.js
+│   ├── models/                 # Mongoose schemas
+│   │   ├── Project.js
+│   │   └── Message.js
+│   ├── routes/                 # API routes
+│   │   ├── projectRoutes.js
+│   │   └── contactRoutes.js
+│   ├── middleware/              # Error handling
+│   │   ├── asyncHandler.js
+│   │   └── errorHandler.js
+│   ├── .env.example
+│   ├── .env                    # your secrets (gitignored)
+│   └── server.js               # Entry point
+│
+├── client/                     # React (Vite) + Tailwind CSS
 │   └── src/
-│       ├── components/  # All sections + effects
-│       └── App.jsx
-└── package.json       # Root scripts with concurrently
+│       ├── components/
+│       │   ├── ui/             # Reusable design-system components
+│       │   │   ├── SectionHeading.jsx
+│       │   │   ├── PixelButton.jsx
+│       │   │   └── StatusBadge.jsx
+│       │   ├── Navbar.jsx
+│       │   ├── Hero.jsx
+│       │   ├── About.jsx
+│       │   ├── Learning.jsx
+│       │   ├── Projects.jsx
+│       │   ├── Contact.jsx
+│       │   ├── Footer.jsx
+│       │   └── ScrollProgress.jsx
+│       ├── services/
+│       │   └── api.js          # REST client (fetch-based)
+│       ├── index.css           # Tailwind @theme + pixel design system
+│       ├── App.jsx
+│       └── main.jsx
+│   ├── vite.config.js          # React + Tailwind v4 plugin
+│   └── package.json
+│
+└── package.json                # Root scripts (concurrently)
 ```
 
 ## Getting Started
@@ -28,7 +63,7 @@ A modern developer portfolio with motion graphics, built on the **MongoDB · Exp
 ### Prerequisites
 
 - Node.js 18+
-- MongoDB running locally, or a Mongo Atlas connection string
+- MongoDB running locally, or a MongoDB Atlas connection string
 
 ### 1. Install dependencies
 
@@ -36,14 +71,18 @@ A modern developer portfolio with motion graphics, built on the **MongoDB · Exp
 npm run install-all
 ```
 
-### 2. Configure the database
+### 2. Configure environment
 
-Set `MONGO_URI` in `server/.env`:
+Copy `.env.example` to `.env` and set your MongoDB connection string:
 
-```
+```bash
+# server/.env
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/devfolio
+MONGO_URI=mongodb://127.0.0.1:27017/krishna_portfolio
+CLIENT_URL=http://localhost:5173
 ```
+
+For MongoDB Atlas, replace `MONGO_URI` with your cluster connection string.
 
 ### 3. Run both server & client
 
@@ -63,18 +102,58 @@ npm run client   # frontend only
 
 ## API Endpoints
 
-| Method | Endpoint         | Description                    |
-| ------ | ---------------- | ------------------------------ |
-| POST   | `/api/contact`   | Save a contact message to Mongo |
-| GET    | `/api/contact`   | List all messages               |
-| GET    | `/api/health`    | Server health check             |
+### Projects
+
+| Method | Endpoint              | Description                         |
+| ------ | --------------------- | ----------------------------------- |
+| GET    | `/api/projects`       | List all projects (?status=, ?featured=true) |
+| GET    | `/api/projects/:id`   | Get a single project                |
+| POST   | `/api/projects`       | Create a project                    |
+| PUT    | `/api/projects/:id`   | Update a project                    |
+| DELETE | `/api/projects/:id`   | Delete a project                    |
+
+### Contact
+
+| Method | Endpoint         | Description                   |
+| ------ | ---------------- | ----------------------------- |
+| POST   | `/api/contact`   | Send a contact message        |
+
+### Health
+
+| Method | Endpoint      | Description       |
+| ------ | ------------- | ----------------- |
+| GET    | `/api/health` | Server health check |
 
 ## Tech Stack
 
-- **Frontend:** React, Vite, Framer Motion, React Icons, React Router
-- **Backend:** Express, Mongoose, CORS, dotenv
-- **Database:** MongoDB
+| Layer      | Technologies                                    |
+| ---------- | ----------------------------------------------- |
+| Frontend   | React 18, Vite, Tailwind CSS v4, Framer Motion, React Icons |
+| Backend    | Node.js, Express, Mongoose, CORS, dotenv        |
+| Database   | MongoDB                                         |
+| Styling    | Tailwind CSS `@theme` tokens, Press Start 2P, VT323, Space Grotesk |
+
+## Design System
+
+The Tailwind theme is defined in `client/src/index.css` using `@theme`:
+
+- **Colors**: `navy`, `paper`, `royal`, `orange`, `pink`, `cyan`, `yellow`, `purple`
+- **Fonts**: `pixel` (Press Start 2P), `vt` (VT323), `body` (Space Grotesk)
+- **Shadows**: `retro`, `retro-sm`, `retro-lg`
+- **Animations**: `float`, `float-slow`, `spin-slow`, `heartbeat`, `marquee`, `arrow-bounce`
+- **Components**: `pixel-kicker`, `pixel-title`, `pixel-card`, `pixel-card-dark`, `pixel-btn`, `pixel-status`, `pixel-icon-box`, `pixel-stamp`
 
 ## Customization
 
-All portfolio content (projects, skills, about text, links) lives in the component files under `client/src/components/`. Update `data` arrays at the top of each component or replace inline content.
+### Adding real projects
+
+1. Use the API: `POST /api/projects` with title, description, technologies, status, etc.
+2. The Projects section automatically fetches from the API — when projects exist in MongoDB, they display; when the DB is empty, the 3 honest WIP cards show instead.
+
+### Updating content
+
+All portfolio text lives in component files under `client/src/components/`. Edit the data arrays or inline content directly.
+
+## License
+
+MIT

@@ -1,12 +1,17 @@
 import { useRef } from "react";
-import "./retroHero.css";
+import PixelButton from "./ui/PixelButton";
 
 const Lined = ({ children }) => (
-  <span className="retro-highlight">{children}</span>
+  <span className="text-orange">{children}</span>
 );
 
+const scrollTo = (id) => {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
+};
+
 const RetroRocket = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true">
+  <svg viewBox="0 0 64 64" className="h-full w-full" aria-hidden="true">
     <g stroke="#171737" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M32 6 C36 16 38 24 38 34 L26 34 C26 24 28 16 32 6 Z" fill="#ff5c86" />
       <path d="M38 40 L26 40 L30 54 L34 54 Z" fill="#51d0f5" />
@@ -20,7 +25,7 @@ const RetroRocket = () => (
 
 const RetroCharacter = () => (
   <svg
-    className="retro-char"
+    className="relative z-10 h-auto w-full"
     viewBox="0 0 480 560"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
@@ -158,11 +163,6 @@ const RetroCharacter = () => (
 const Hero = () => {
   const decorRef = useRef(null);
 
-  const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   const handleMouseMove = (e) => {
     const el = decorRef.current;
     if (!el) return;
@@ -174,109 +174,154 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="retro-hero">
-      <div className="retro-card" onMouseMove={handleMouseMove}>
-        <div className="retro-left">
-          <p className="retro-tag">★ STUDENT PORTFOLIO — KRISHNA ★</p>
-
-          <div className="retro-heading-wrap">
-            <h1 className="retro-heading">
-              Hi, I'm
-              <br />
-              Krishna
-            </h1>
-            <svg
-              className="zigzag-underline"
-              viewBox="0 0 180 10"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              <polyline
-                points="0,8 10,2 20,8 30,2 40,8 50,2 60,8 70,2 80,8 90,2 100,8 110,2 120,8 130,2 140,8 150,2 160,8 170,2 180,8"
-                fill="none"
-                stroke="#ff7b2e"
-                strokeWidth="4"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
-
-          <p className="retro-sub">
-            BS STUDENT <span className="sub-dot">•</span> AI/ML LEARNER{" "}
-            <span className="sub-dot">•</span> BUILDER
+    <section
+      id="home"
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-navy px-5 pb-8 pt-32 md:px-10"
+      style={{
+        backgroundImage:
+          "radial-gradient(circle at 82% 15%, rgba(255,92,134,0.14), transparent 45%), radial-gradient(circle at 8% 88%, rgba(157,107,255,0.12), transparent 40%), radial-gradient(circle at 45% 45%, rgba(81,208,245,0.06), transparent 55%)",
+      }}
+      onMouseMove={handleMouseMove}
+    >
+      <div className="mx-auto grid w-full max-w-[1200px] items-center gap-10 lg:grid-cols-2 lg:gap-6">
+        {/* left — copy */}
+        <div className="relative z-10">
+          <p className="inline-block w-fit -rotate-2 border-2 border-navy bg-orange px-3 py-1.5 font-vt text-xl font-bold tracking-wide text-navy shadow-retro-sm">
+            ★ STUDENT PORTFOLIO — KRISHNA ★
           </p>
 
-          <p className="retro-para">
+          <h1
+            className="mt-6 font-pixel text-[clamp(32px,7vw,62px)] uppercase leading-[1.15] text-paper"
+            style={{ textShadow: "4px 4px 0 rgba(255,123,46,0.85)" }}
+          >
+            Hi, I'm
+            <br />
+            Krishna
+          </h1>
+
+          <svg
+            className="mt-4 h-2.5 w-[180px]"
+            viewBox="0 0 180 10"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <polyline
+              points="0,8 10,2 20,8 30,2 40,8 50,2 60,8 70,2 80,8 90,2 100,8 110,2 120,8 130,2 140,8 150,2 160,8 170,2 180,8"
+              fill="none"
+              stroke="#ff7b2e"
+              strokeWidth="4"
+              strokeLinecap="round"
+            />
+          </svg>
+
+          <p className="mt-5 font-pixel text-[12px] leading-relaxed tracking-wide text-cyan md:text-[13px]">
+            BS STUDENT <span className="text-orange">•</span> AI/ML LEARNER{" "}
+            <span className="text-orange">•</span> BUILDER
+          </p>
+
+          <p className="mt-6 max-w-[540px] text-[17px] leading-relaxed text-white/75">
             First-year <Lined>BS student in Aeronautical &amp; Space Technology</Lined>{" "}
             at IIT Madras, exploring AI/ML, mathematics, DSA, web development,
             and quantum computing.
           </p>
 
-          <div className="retro-cta-row">
-            <button className="retro-cta retro-cta--accent" type="button" onClick={() => scrollTo("learning")}>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <PixelButton variant="accent" onClick={() => scrollTo("learning")}>
               EXPLORE MY JOURNEY <span>↓</span>
-            </button>
-            <button className="retro-cta" type="button" onClick={() => scrollTo("contact")}>
+            </PixelButton>
+            <PixelButton variant="primary" onClick={() => scrollTo("contact")}>
               CONTACT ME <span>✉</span>
-            </button>
+            </PixelButton>
           </div>
 
-          <div className="retro-info">
-            <div className="retro-contact-row">
-              <span className="retro-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" strokeWidth="2.4">
+          <div className="mt-10 flex flex-col gap-3">
+            <div className="flex items-center gap-3">
+              <span className="flex h-8 w-8 items-center justify-center rounded-md border-2 border-navy bg-royal text-paper">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.4">
                   <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
               </span>
-              <span>IIT MADRAS — BS AERO &amp; SPACE TECH</span>
+              <span className="font-vt text-xl tracking-wider text-white/80">
+                IIT MADRAS — BS AERO &amp; SPACE TECH
+              </span>
             </div>
-            <div className="retro-contact-row">
-              <span className="retro-icon retro-icon--pink" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" strokeWidth="2.4">
+            <div className="flex items-center gap-3">
+              <span className="flex h-8 w-8 items-center justify-center rounded-md border-2 border-navy bg-pink text-paper">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.4">
                   <path d="M12 2l2.1 5.6L20 9.3l-4.2 3.9 1.3 5.9L12 16l-5.1 3.1 1.3-5.9L4 9.3l5.9-1.7z" />
                 </svg>
               </span>
-              <span>LEARNING — AI/ML • MATH • DSA • WEB • QC</span>
+              <span className="font-vt text-xl tracking-wider text-white/80">
+                LEARNING — AI/ML • MATH • DSA • WEB • QC
+              </span>
             </div>
           </div>
         </div>
 
-        <div className="retro-right" ref={decorRef}>
-          <div className="orbit-ring" aria-hidden="true"></div>
-          <RetroCharacter />
-          <span className="float-chip rocket" aria-hidden="true">
-            <RetroRocket />
-          </span>
-          <span className="float-chip ai chip-left">AI</span>
-          <span className="float-chip sigma">Σ</span>
-          <span className="float-chip ml chip-right">ML</span>
-          <span className="retro-credit" aria-hidden="true">
-            ✦ LEARN · PIXEL · GROW ✦
-          </span>
+        {/* right — pixel illustration */}
+        <div className="relative hidden justify-center md:flex" ref={decorRef}>
+          <div className="parallax relative mx-auto w-full max-w-[520px]">
+            <div className="absolute inset-[6%] rounded-full border-2 border-dashed border-cyan/60 animate-spin-slow" />
+            <RetroCharacter />
+
+            {/* floating chips */}
+            <span
+              className="absolute -left-4 top-[16%] z-20 h-10 w-10 animate-float rounded-md border-2 border-navy bg-orange p-1.5 shadow-retro-sm"
+              aria-hidden="true"
+            >
+              <RetroRocket />
+            </span>
+            <span
+              className="absolute -left-8 bottom-[24%] z-20 animate-float-slow border-2 border-cyan bg-navy-2 px-3 py-2 font-pixel text-xs text-cyan shadow-retro-sm"
+              style={{ animationDelay: "0.6s" }}
+              aria-hidden="true"
+            >
+              AI
+            </span>
+            <span
+              className="absolute -right-6 top-[12%] z-20 animate-float border-2 border-yellow bg-navy-2 px-3 py-2 font-pixel text-sm text-yellow shadow-retro-sm"
+              style={{ animationDelay: "1.2s" }}
+              aria-hidden="true"
+            >
+              Σ
+            </span>
+            <span
+              className="absolute -right-8 bottom-[16%] z-20 animate-float-slow border-2 border-pink bg-navy-2 px-3 py-2 font-pixel text-xs text-pink shadow-retro-sm"
+              style={{ animationDelay: "0.3s" }}
+              aria-hidden="true"
+            >
+              ML
+            </span>
+
+            <span className="absolute right-4 bottom-0 font-vt text-lg tracking-widest text-yellow" aria-hidden="true">
+              ✦ LEARN · PIXEL · GROW ✦
+            </span>
+          </div>
         </div>
       </div>
 
-      <div className="retro-marquee" aria-hidden="true">
-        <div className="retro-marquee-track">
+      {/* marquee */}
+      <div className="marquee mt-12 w-full bg-royal py-3.5">
+        <div className="marquee-track">
           {[0, 1].map((g) => (
-            <div className="retro-marquee-group" key={g}>
-              <span>HI, I'M KRISHNA</span>
-              <span>★</span>
-              <span>IIT MADRAS</span>
-              <span>★</span>
-              <span>AERO &amp; SPACE TECH</span>
-              <span>★</span>
+            <div className="flex shrink-0 items-center gap-8 pr-8 font-pixel text-[11px] uppercase tracking-wider text-paper" key={g}>
+              <span>Hi, I'm Krishna</span>
+              <span className="text-orange">★</span>
+              <span>IIT Madras</span>
+              <span className="text-orange">★</span>
+              <span>Aero &amp; Space Tech</span>
+              <span className="text-orange">★</span>
               <span>AI/ML</span>
-              <span>★</span>
-              <span>LINEAR ALGEBRA</span>
-              <span>★</span>
+              <span className="text-orange">★</span>
+              <span>Linear Algebra</span>
+              <span className="text-orange">★</span>
               <span>DSA</span>
-              <span>★</span>
-              <span>WEB DEV</span>
-              <span>★</span>
-              <span>QUANTUM</span>
-              <span>★</span>
+              <span className="text-orange">★</span>
+              <span>Web Dev</span>
+              <span className="text-orange">★</span>
+              <span>Quantum</span>
+              <span className="text-orange">★</span>
             </div>
           ))}
         </div>

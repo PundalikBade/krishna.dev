@@ -9,7 +9,10 @@ const ScrollProgress = () => {
   });
 
   return (
-    <motion.div className="scroll-progress" style={{ scaleX }} />
+    <motion.div
+      className="fixed inset-x-0 top-0 z-[9999] h-[5px] border-b-2 border-navy stripes-orange"
+      style={{ scaleX, transformOrigin: "0 0" }}
+    />
   );
 };
 

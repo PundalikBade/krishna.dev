@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
+import SectionHeading from "./ui/SectionHeading";
 
 const DeskScene = () => (
   <svg
-    className="about-scene"
+    className="h-auto w-full"
     viewBox="0 0 520 440"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
@@ -124,88 +125,97 @@ const DeskScene = () => (
   </svg>
 );
 
-const About = () => {
-  const edu = [
-    { label: "Education", value: "IIT Madras" },
-    { label: "Program", value: "BS — Aeronautical & Space Technology" },
-    { label: "Year", value: "First Year" },
-    { label: "Current Focus", value: "AI/ML • Mathematics • DSA • Web Dev • Quantum", wide: true },
-  ];
+const edu = [
+  { label: "Education", value: "IIT Madras" },
+  { label: "Year", value: "First Year" },
+  { label: "Program", value: "BS — Aeronautical & Space Technology", wide: true },
+  { label: "Current Focus", value: "AI/ML • Mathematics • DSA • Web Dev • Quantum", wide: true },
+];
 
-  return (
-    <section id="about" className="about">
-      <div className="container">
+const About = () => (
+  <section className="relative bg-white px-5 py-20 md:py-28">
+    <div className="pointer-events-none absolute inset-0 dot-grid opacity-30" aria-hidden="true" />
+    <div className="absolute inset-x-0 top-0 h-1.5 bg-orange" aria-hidden="true" />
+
+    <div className="relative mx-auto max-w-[1200px]">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+      >
+        <SectionHeading kicker="ABOUT / 01" title="Building my" accent="foundation" accentClass="text-orange" />
+      </motion.div>
+
+      <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
         <motion.div
-          className="retro-section-header"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-col gap-4"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="retro-kicker">ABOUT / 01</span>
-          <h2 className="retro-section-title">
-            Building my <span className="accent-word">foundation</span>
-          </h2>
+          <span className="w-fit -rotate-2 border-2 border-navy bg-navy px-3 py-1.5 font-vt text-xl font-bold tracking-wider text-paper shadow-retro-sm">
+            <span className="text-orange">*</span> ABOUT ME <span className="text-orange">*</span>
+          </span>
+
+          <h3 className="pixel-title text-[clamp(15px,2.4vw,21px)] leading-[1.55] text-navy">
+            Hi, I'm Krishna — IIT Madras student in Aeronautical &amp; Space
+            Technology, exploring AI/ML and beyond.
+          </h3>
+
+          <p className="text-[17px] leading-relaxed text-ink-blue">
+            I'm a <strong className="text-orange">first-year BS student</strong> in Aeronautical
+            and Space Technology at IIT Madras.
+          </p>
+          <p className="text-[17px] leading-relaxed text-ink-blue">
+            Alongside my academic journey, I'm exploring{" "}
+            <strong className="text-navy">computer science, AI/ML, mathematics, DSA, web
+              development, and quantum computing</strong>.
+          </p>
+          <p className="text-[17px] leading-relaxed text-ink-blue">
+            I'm focused on learning deeply and practicing consistently — gradually
+            turning what I learn into real projects. I'm especially interested in building{" "}
+            <strong className="text-navy">strong mathematical and technical foundations
+              for AI/ML</strong>{" "}
+            and eventually moving toward research.
+          </p>
+
+          <div className="mt-3 grid max-w-[560px] grid-cols-2 border-[3px] border-navy shadow-retro">
+            {edu.map((d) => (
+              <div
+                className={`border-navy/15 p-4 ${d.wide ? "col-span-2" : ""}`}
+                key={d.label}
+                style={{
+                  borderWidth: "1px",
+                }}
+              >
+                <span className="block font-vt text-lg uppercase tracking-wider text-navy-3">{d.label}</span>
+                <span className="block pt-0.5 text-[15px] font-bold leading-snug text-navy">{d.value}</span>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
-        <div className="about-grid">
-          <motion.div
-            className="about-text-block"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="about-tag">
-              <span className="accent">*</span> ABOUT ME <span className="accent">*</span>
-            </span>
-
-            <h3 className="about-subtitle">
-              Hi, I'm Krishna — IIT Madras student in
-              Aeronautical &amp; Space Technology, exploring AI/ML
-              and beyond.
-            </h3>
-
-            <p className="about-body">
-              I'm a <strong>first-year BS student</strong> in Aeronautical and
-              Space Technology at IIT Madras.
-            </p>
-            <p className="about-body">
-              Alongside my academic journey, I'm exploring{" "}
-              <strong>computer science, AI/ML, mathematics, DSA, web
-              development, and quantum computing</strong>.
-            </p>
-            <p className="about-body">
-              I'm focused on learning deeply and practicing consistently —
-              gradually turning what I learn into real projects. I'm especially
-              interested in building <strong>strong mathematical and technical
-              foundations for AI/ML</strong> and eventually moving toward research.
-            </p>
-
-            <div className="about-details">
-              {edu.map((d) => (
-                <div className={`detail-item ${d.wide ? "detail-item--wide" : ""}`} key={d.label}>
-                  <span className="detail-label">{d.label}</span>
-                  <span className="detail-value">{d.value}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="about-visual"
-            initial={{ opacity: 0, y: 40, rotate: 2 }}
-            whileInView={{ opacity: 1, y: 0, rotate: -1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7 }}
-          >
-            <DeskScene />
-            <span className="about-stamp">IIT M<br />LEARNING<br />ZONE</span>
-          </motion.div>
-        </div>
+        <motion.div
+          className="relative mx-auto w-full max-w-[520px]"
+          initial={{ opacity: 0, y: 40, rotate: 2 }}
+          whileInView={{ opacity: 1, y: 0, rotate: -1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7 }}
+        >
+          <DeskScene />
+          <span className="pixel-stamp absolute -bottom-3 right-5">
+            IIT M
+            <br />
+            LEARNING
+            <br />
+            ZONE
+          </span>
+        </motion.div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default About;
