@@ -129,7 +129,7 @@ const edu = [
   { label: "Education", value: "IIT Madras" },
   { label: "Year", value: "First Year" },
   { label: "Program", value: "BS — Aeronautical & Space Technology", wide: true },
-  { label: "Current Focus", value: "AI/ML • Mathematics • DSA • Web Dev • Quantum", wide: true },
+  { label: "Current Focus", value: "AI/ML • Mathematics • DSA • Web Development • Quantum", wide: true },
 ];
 
 const About = () => (
@@ -160,26 +160,41 @@ const About = () => (
           </span>
 
           <h3 className="pixel-title text-[clamp(15px,2.4vw,21px)] leading-[1.55] text-navy">
-            Hi, I'm Krishna — IIT Madras student in Aeronautical &amp; Space
-            Technology, exploring AI/ML and beyond.
+            Hi, I'm Krishna — a first-year BS student in{" "}
+            <span className="text-orange">Aeronautical &amp; Space Technology</span>{" "}
+            at IIT Madras.
           </h3>
 
           <p className="text-[17px] leading-relaxed text-ink-blue">
-            I'm a <strong className="text-orange">first-year BS student</strong> in Aeronautical
-            and Space Technology at IIT Madras.
+            My academic path is rooted in aerospace, but I'm increasingly drawn
+            toward the world of computing, mathematics, and artificial
+            intelligence.
           </p>
           <p className="text-[17px] leading-relaxed text-ink-blue">
-            Alongside my academic journey, I'm exploring{" "}
-            <strong className="text-navy">computer science, AI/ML, mathematics, DSA, web
-              development, and quantum computing</strong>.
+            Right now, I'm exploring how programming and mathematical ideas come
+            together to create intelligent systems. That means spending time
+            with linear algebra, algorithms, AI/ML fundamentals, JavaScript, web
+            development, and even the foundations of quantum computing.
           </p>
           <p className="text-[17px] leading-relaxed text-ink-blue">
-            I'm focused on learning deeply and practicing consistently — gradually
-            turning what I learn into real projects. I'm especially interested in building{" "}
-            <strong className="text-navy">strong mathematical and technical foundations
-              for AI/ML</strong>{" "}
-            and eventually moving toward research.
+            I'm still early in this journey, and that's intentional. Instead of
+            rushing toward a list of technologies, I'm focused on understanding
+            the fundamentals well enough to build on them.
           </p>
+
+          <p className="mt-3 font-vt text-xl tracking-wider text-navy-3">
+            THE GOAL IS SIMPLE:
+          </p>
+          <div className="mt-1.5 flex w-fit flex-wrap items-center gap-x-2.5 gap-y-1.5 border-[3px] border-navy bg-paper-2 px-4 py-2.5 shadow-retro-sm">
+            {["LEARN", "EXPERIMENT", "BUILD", "UNDERSTAND", "REPEAT"].map(
+              (step, i) => (
+                <span className="flex items-center gap-x-2.5" key={step}>
+                  {i > 0 && <span className="text-orange">→</span>}
+                  <span className="pixel-title text-[10px] text-navy">{step}</span>
+                </span>
+              )
+            )}
+          </div>
 
           <div className="mt-3 grid max-w-[560px] grid-cols-2 border-[3px] border-navy shadow-retro">
             {edu.map((d) => (

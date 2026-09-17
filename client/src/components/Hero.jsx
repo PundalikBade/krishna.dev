@@ -225,6 +225,12 @@ const Hero = () => {
             and quantum computing.
           </p>
 
+          <p className="mt-4 max-w-[540px] text-[16.5px] leading-relaxed text-white/65">
+            I'm currently focused on building strong foundations — learning
+            deeply, experimenting often, and turning what I learn into things I
+            can build.
+          </p>
+
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <PixelButton variant="accent" onClick={() => scrollTo("learning")}>
               EXPLORE MY JOURNEY <span>↓</span>

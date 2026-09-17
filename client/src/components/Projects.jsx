@@ -6,9 +6,9 @@ import SectionHeading from "./ui/SectionHeading";
 
 /* ---------- static work-in-progress cards (shown when DB is empty) ---------- */
 const wipCards = [
-  { num: "01", title: "Projects in Progress", desc: "Building my first serious projects as I develop my programming and AI/ML skills.", status: "IN PROGRESS", icon: "★", gradient: "#1e2a6e", accent: "#ff7b2e" },
-  { num: "02", title: "Learning Experiments", desc: "Small experiments and practice work created while learning programming, mathematics, AI/ML, and web development.", status: "EXPERIMENTING", icon: "⚙", gradient: "#3aa9d6", accent: "#ffce54" },
-  { num: "03", title: "Future Builds", desc: "Turning the concepts I learn into practical projects as my skills grow.", status: "COMING SOON", icon: "☁", gradient: "#9d6bff", accent: "#51d0f5" },
+  { num: "01", title: "Projects in Progress", desc: "I'm working toward my first serious builds as I turn programming and AI/ML concepts into practical experiments.", status: "IN PROGRESS", icon: "★", gradient: "#1e2a6e", accent: "#ff7b2e" },
+  { num: "02", title: "Learning Experiments", desc: "Small experiments are where I test ideas, make mistakes, and understand what I'm learning.", status: "EXPERIMENTING", icon: "⚙", gradient: "#3aa9d6", accent: "#ffce54" },
+  { num: "03", title: "Future Builds", desc: "As my foundations grow, I want to turn what I learn into useful projects across AI/ML and technology.", status: "COMING SOON", icon: "☁", gradient: "#9d6bff", accent: "#51d0f5" },
 ];
 
 const accentForStatus = (s) => {
@@ -99,7 +99,7 @@ const Projects = () => {
           kickerClass="bg-white text-pink border-pink"
           titleClass="text-royal"
           accentClass="text-pink"
-          intro="I'm currently learning and experimenting, working toward building projects across AI/ML, web development, and other areas of technology. Here's where I'm headed."
+          intro="Eventually, the learning has to become something I can build. Right now I'm still learning and experimenting — here's the direction I'm moving in."
           introClass="text-ink-blue"
         />
 

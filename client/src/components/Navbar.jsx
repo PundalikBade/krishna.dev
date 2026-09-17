@@ -21,10 +21,8 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className={`fixed inset-x-0 top-0 z-[1000] flex items-center justify-between px-5 py-4 transition-all duration-300 md:px-10 ${
-        scrolled || open
-          ? "border-b-4 border-orange bg-navy/95 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
-          : "border-b-4 border-transparent bg-transparent"
+      className={`fixed inset-x-0 top-0 z-[1000] flex items-center justify-between border-b-4 bg-navy px-5 py-4 shadow-[0_4px_16px_rgba(0,0,0,0.35)] transition-colors duration-300 md:px-10 ${
+        scrolled || open ? "border-orange" : "border-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -87,10 +85,10 @@ const Navbar = () => {
 
       {/* mobile menu */}
       <div
-        className={`fixed right-0 top-0 flex h-screen w-[74%] max-w-[300px] flex-col items-center justify-center gap-4 bg-navy/95 transition-transform duration-400 md:hidden ${
+        className={`fixed right-0 top-0 flex h-screen w-[74%] max-w-[300px] flex-col items-center justify-center gap-4 bg-navy transition-transform duration-400 md:hidden ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ backdropFilter: "blur(20px)", borderLeft: "3px solid var(--color-orange)" }}
+        style={{ borderLeft: "3px solid var(--color-orange)" }}
       >
         {navItems.map((item) => (
           <a

@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import TransitionBand from "./components/TransitionBand";
 import Learning from "./components/Learning";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
@@ -45,6 +46,7 @@ function App() {
       <main>
         <Hero />
         <About />
+        <TransitionBand />
         <Learning />
         <Projects />
         <Contact />

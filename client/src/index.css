@@ -86,6 +86,8 @@
 
   html {
     scroll-behavior: smooth;
+    /* keep anchored sections clear of the fixed navbar */
+    scroll-padding-top: 92px;
   }
 
   body {
@@ -135,10 +137,6 @@
   svg {
     max-width: 100%;
     display: block;
-  }
-
-  section[id] {
-    scroll-margin-top: 84px;
   }
 
   ::selection {
